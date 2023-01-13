@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <chen.you.stickyview.StickyRecyclerView
+            android:id="@+id/erv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:stickySize="32dp"
+            app:stickyBackgroundColor="@color/stick_background_color"
+            app:stickyTextSize="16sp"
+            app:stickyTextColor="@color/stick_text_color"
+            app:stickyMargin="12dp"
+            app:stickyGravity="start"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <chen.you.stickyview.CharIndexView
+            android:id="@+id/civ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginRight="10dp"
+            app:indexItemSize="15dp"
+            app:indexTextSize="11sp"
+            app:selectIndexBgDrawable="@drawable/bg_char_index"
+            app:indexTextColor="#333333"
+            app:selectIndexTextColor="@color/white"
+            app:indexDrawableStart="@drawable/icon_search"
+            app:indexOrientation="vertical"
+            app:indicatorTextColor="@color/white"
+            app:indicatorTextSize="30sp"
+            app:indicatorBgDrawable="@drawable/char_index"/>
+
+    </FrameLayout>
+
+</layout>

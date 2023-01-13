@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#ff00ff"
+                android:textSize="12sp"
+                android:text="Gravity center + Margin显示"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="08dp"
+                android:gravity="center"
+                android:textColor="#ff00ff"
+                android:textSize="12sp"
+                android:text="Gravity Right + Margin显示"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <chen.you.stickyview.StickyRecyclerView
+                android:id="@+id/erv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                app:stickySize="32dp"
+                app:stickyBackgroundColor="@color/stick_background_color"
+                app:stickyTextSize="16sp"
+                app:stickyTextColor="@color/stick_text_color"
+                app:stickyMargin="12dp"
+                app:stickyGravity="center"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <chen.you.stickyview.StickyRecyclerView
+                android:id="@+id/erv2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                app:stickySize="32dp"
+                android:layout_marginLeft="08dp"
+                app:stickyBackgroundColor="@color/stick_background_color"
+                app:stickyTextSize="16sp"
+                app:stickyTextColor="@color/stick_text_color"
+                app:stickyMargin="12dp"
+                app:stickyGravity="end"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

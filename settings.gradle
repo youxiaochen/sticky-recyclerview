@@ -1,0 +1,2 @@
+include ':app', ':stickyview'
+rootProject.name = "sticky-recyclerview"

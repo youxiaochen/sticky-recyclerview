@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:background="?attr/colorPrimary"
+            app:titleMarginStart="0dp"
+            app:contentInsetStart="0dp"
+            contentPaddingRight="0dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:text="Horizontal布局"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <chen.you.stickyview.StickyRecyclerView
+                android:id="@+id/erv"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:orientation="horizontal"
+                app:stickySize="32dp"
+                app:stickyBackgroundColor="@color/stick_background_color"
+                app:stickyTextSize="16sp"
+                app:stickyTextColor="@color/stick_text_color"
+                app:stickyMargin="12dp"
+                app:stickyGravity="start"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:textColor="#ff00ff"
+                android:gravity="center"
+                android:text="上面为水平方向的START和下面的END方式"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp">
+
+                <chen.you.stickyview.StickyRecyclerView
+                    android:id="@+id/erv2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:stickySize="32dp"
+                    app:stickyBackgroundColor="@color/stick_background_color"
+                    app:stickyTextSize="16sp"
+                    app:stickyTextColor="@color/stick_text_color"
+                    app:stickyGravity="center"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <chen.you.stickyview.CharIndexView
+                    android:id="@+id/civ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    app:indexItemSize="12dp"
+                    app:indexTextSize="09sp"
+                    app:indexTextColor="#333333"
+                    app:selectIndexTextColor="@color/white"
+                    app:indexDrawableStart="@drawable/head0"
+                    app:selectIndexBgDrawable="@drawable/bg_char_index"
+                    app:indexOrientation="horizontal"
+                    app:indicatorTextColor="@color/white"
+                    app:indicatorTextSize="30sp"
+                    app:indicatorPadding="10dp"
+                    app:indicatorBgDrawable="@drawable/char_index_h"/>
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:textColor="#ff00ff"
+                android:gravity="center"
+                android:text="水平方向的居中"/>
+
+            <chen.you.stickyview.StickyRecyclerView
+                android:id="@+id/erv3"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:orientation="horizontal"
+                app:stickySize="32dp"
+                app:stickyBackgroundColor="@color/stick_background_color"
+                app:stickyTextSize="16sp"
+                app:stickyTextColor="@color/stick_text_color"
+                app:stickyMargin="12dp"
+                app:stickyGravity="end"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</layout>

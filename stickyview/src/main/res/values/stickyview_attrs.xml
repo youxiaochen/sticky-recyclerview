@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- StickRecyclerView -->
+    <declare-styleable name="StickyRecyclerView">
+
+        <!-- Sticky矩阵大小, 无论Layout还是Drawing方式都需要配置此大小来计算偏移 -->
+        <attr name="stickySize" format="dimension"/>
+
+        <!-- Sticky字体大小 -->
+        <attr name="stickyTextSize" format="dimension"/>
+
+        <!-- Sticky字体颜色, 需要字体渐变效果时配置 state_first颜色属性, 详见demo -->
+        <attr name="stickyTextColor" format="color"/>
+
+        <!-- Sticky背景颜色, 需要渐变效果时配置 state_first属性, 见demo -->
+        <attr name="stickyBackgroundColor" format="color"/>
+
+        <!-- Sticky文字位置 -->
+        <attr name="stickyGravity">
+            <!--   垂直布局时相当于 left|center_vertical, 水平布局时相当于top|center_horizontal  -->
+            <enum name="start" value="0"/>
+            <!--   垂直水平布局都相当于 center   -->
+            <enum name="center" value="1"/>
+            <!--   垂直布局时相当于 right|center_vertical, 水平布局时相当于bottom|center_horizontal  -->
+            <enum name="end" value="2"/>
+        </attr>
+
+        <!-- Sticky margin超始位置, stickyGravity=left时相当marginLef, =center相当(width - margin) / 2 + margin -->
+        <attr name="stickyMargin" format="dimension"/>
+
+    </declare-styleable>
+
+    <!--  字符索引控件  -->
+    <declare-styleable name="CharIndexView">
+
+        <!-- 单个字符item的大小-->
+        <attr name="indexItemSize" format="dimension"/>
+
+        <!-- 布局方向, 默认垂直方向 -->
+        <attr name="indexOrientation">
+            <enum name="vertical" value="1" />
+            <enum name="horizontal" value="0" />
+        </attr>
+
+        <!-- 索引字大小 -->
+        <attr name="indexTextSize" format="dimension"/>
+
+        <!-- 字体颜色 -->
+        <attr name="indexTextColor" format="color"/>
+
+        <!-- select的字颜色 -->
+        <attr name="selectIndexTextColor" format="color"/>
+
+        <!-- select的背景颜色, 默认无 -->
+        <attr name="selectIndexBgDrawable" format="reference"/>
+
+        <!--  类似TextView的水平时drawableLeft/垂直时drawableTop  -->
+        <attr name="indexDrawableStart" format="reference"/>
+
+        <!--  类似TextView的drawablePadding -->
+        <attr name="indexDrawablePadding" format="dimension"/>
+
+        <!-- 指示字体大小 -->
+        <attr name="indicatorTextSize" format="dimension"/>
+
+        <!-- 指示字体颜色 -->
+        <attr name="indicatorTextColor" format="color"/>
+
+        <!-- 指示背景drawable支持.9格式 -->
+        <attr name="indicatorBgDrawable" format="reference"/>
+
+        <!-- 指示填充距离, 与Char index的距离 -->
+        <attr name="indicatorPadding" format="dimension"/>
+
+        <!--   指示器滑动时, Sticky的索引与指示器不一定相同, 此时是否校正, 默认自动校正, 不用于Sticky时可设置为false  -->
+        <attr name="indicatorAutoCheck" format="boolean"/>
+
+    </declare-styleable>
+
+</resources>
