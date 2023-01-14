@@ -16,6 +16,8 @@ dependencies {
 }
 ```
 
+#### [测试包下载](image-and-apk/sticky-recyclerview-demo.apk)
+
 #### 使用, 最简单使用两行代码即可
 ```
 private var stickyView: StickyRecyclerView
