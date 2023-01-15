@@ -9,6 +9,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 
+import androidx.annotation.CallSuper;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -269,11 +270,11 @@ public class StickyRecyclerView extends ExpandableRecyclerView {
         //过度文字颜色
         public int stickyTextColor = Color.BLACK;
         //sticky状态时文字颜色
-        public int selectStickyTextColor = Color.BLACK;
+        public int selectStickyTextColor = Color.WHITE;
         //矩阵过度背景颜色
         public int stickyBgColor = Color.GRAY;
         //sticky状态时的背景颜色
-        public int selectStickyBgColor = Color.GRAY;
+        public int selectStickyBgColor = Color.RED;
         //sticky文字位置方式
         @Gravity
         public int stickyGravity = START;
@@ -347,6 +348,7 @@ public class StickyRecyclerView extends ExpandableRecyclerView {
         //上一次的位置
         private int currentStickiedPosition = RecyclerView.NO_POSITION;
 
+        @CallSuper
         void setStickyParams(StickyParams params) {
             this.stickyParams = params;
             currentStickiedPosition = RecyclerView.NO_POSITION;
@@ -364,6 +366,7 @@ public class StickyRecyclerView extends ExpandableRecyclerView {
             if (srv.getStickyAdapter() == null) return;
             StickyAdapter<?, ?> adapter = srv.getStickyAdapter();
             RecyclerView.LayoutManager lm = parent.getLayoutManager();
+            //只查找当前第一个item的Group和下一组的Group
             int firstPos = findFirstVisibleItemPosition(lm);
             if (firstPos < 0) return;
             RecyclerView.ViewHolder vh = srv.findViewHolderForAdapterPosition(firstPos);
