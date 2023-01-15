@@ -4,20 +4,21 @@ import android.animation.ArgbEvaluator;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.text.TextPaint;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 /**
- * author: you : 2020/10/29 支持START, CENTER, RIGHT , 水平, 垂直 多种方式和渐变效果显示
+ * author: you : 2020/10/29 支持START, CENTER, RIGHT , 水平,垂直多种方式和渐变效果显示
  * 或者使用 {@link chen.you.stickyview.StickyLayoutView}
  * 作QQ/W 86207610
  */
 public class DrawingStickyManager extends StickyRecyclerView.StickyManager {
     //text画笔
-    private final Paint textPaint;
+    private final Paint textPaint = new TextPaint();
     //画矩阵背景画笔
-    private final Paint bgPaint;
+    private final Paint bgPaint = new Paint();
     //画文本的Y坐标点
     private float textY;
     //Sticky中心大小
@@ -30,10 +31,7 @@ public class DrawingStickyManager extends StickyRecyclerView.StickyManager {
     private ColorEvaluator bgColorEvaluator;
 
     public DrawingStickyManager() {
-        textPaint = new Paint();
         textPaint.setAntiAlias(true);
-
-        bgPaint = new Paint();
         bgPaint.setAntiAlias(true);
     }
 
@@ -41,11 +39,11 @@ public class DrawingStickyManager extends StickyRecyclerView.StickyManager {
     public void setStickyParams(StickyRecyclerView.StickyParams params) {
         super.setStickyParams(params);
         textColorEvaluator = new ColorEvaluator(params.selectStickyTextColor, params.stickyTextColor);
-        if (!textColorEvaluator.isSameColor) {
+        if (textColorEvaluator.isSameColor) {
             textPaint.setColor(params.stickyTextColor);
         }
         bgColorEvaluator = new ColorEvaluator(params.selectStickyBgColor, params.stickyBgColor);
-        if (!bgColorEvaluator.isSameColor) {
+        if (bgColorEvaluator.isSameColor) {
             bgPaint.setColor(params.stickyBgColor);
         }
         textPaint.setTextSize(params.stickyTextSize);

@@ -104,21 +104,6 @@ public class StickyRecyclerView extends ExpandableRecyclerView {
         }
     }
 
-    @NonNull
-    public StickyManager getStickyManager() {
-        return mStickyManager;
-    }
-
-    @NonNull
-    public StickyParams getStickyParams() {
-        return mStickyParams;
-    }
-
-    @Nullable
-    public StickyAdapter<? extends GroupViewHolder, ? extends ChildViewHolder> getStickyAdapter() {
-        return (StickyAdapter<? extends GroupViewHolder, ? extends ChildViewHolder>) getExpandableAdapter();
-    }
-
     @Override
     public void setAdapter(ExpandableAdapter<? extends GroupViewHolder, ? extends ChildViewHolder> adapter) {
         throw new RuntimeException("Use setStickyAdapter(StickAdapter)");
@@ -209,6 +194,21 @@ public class StickyRecyclerView extends ExpandableRecyclerView {
     //滑动到指定位置,无偏移, StickyAdapter中的位置
     public void scrollToBindingPosition(int bindingPosition) {
         scrollToAdapterPosition(bindingPosition + getHeaderCount());
+    }
+
+    @NonNull
+    public StickyManager getStickyManager() {
+        return mStickyManager;
+    }
+
+    @NonNull
+    public StickyParams getStickyParams() {
+        return mStickyParams;
+    }
+
+    @Nullable
+    public StickyAdapter<? extends GroupViewHolder, ? extends ChildViewHolder> getStickyAdapter() {
+        return (StickyAdapter<? extends GroupViewHolder, ? extends ChildViewHolder>) getExpandableAdapter();
     }
 
     public void addOnStickiedListener(@NonNull OnStickiedListener listener) {
@@ -361,22 +361,23 @@ public class StickyRecyclerView extends ExpandableRecyclerView {
             if (stickyParams == null || parent.getLayoutManager() == null) return;
             if (!(parent instanceof StickyRecyclerView)) return;
             StickyRecyclerView srv = (StickyRecyclerView) parent;
-            if (srv.getExpandableAdapter() == null) return;
+            if (srv.getStickyAdapter() == null) return;
+            StickyAdapter<?, ?> adapter = srv.getStickyAdapter();
             RecyclerView.LayoutManager lm = parent.getLayoutManager();
             int firstPos = findFirstVisibleItemPosition(lm);
             if (firstPos < 0) return;
             RecyclerView.ViewHolder vh = srv.findViewHolderForAdapterPosition(firstPos);
             if (vh instanceof GroupViewHolder) {
                 GroupInfo groupInfo = srv.findGroupInfoByPosition(vh.getAbsoluteAdapterPosition(), mTmpGroupInfo);
-                stickViewHolder(c, srv, groupInfo);
+                stickViewHolder(c, srv, groupInfo, adapter);
             } else if (vh instanceof ChildViewHolder) {
                 ChildInfo childInfo = srv.findChildInfoByPosition(vh.getAbsoluteAdapterPosition(), mTmpChildInfo);
-                stickViewHolder(c, srv, childInfo == null ? null : childInfo.group);
+                stickViewHolder(c, srv, childInfo == null ? null : childInfo.group, adapter);
             } else {
                 if (stickyParams.needGradient()) {//渐变处理下一个
                     RecyclerView.ViewHolder nextVH = srv.findViewHolderForAdapterPosition(firstPos + 1);
                     if (nextVH instanceof GroupViewHolder) {
-                        preStickViewHolder(c, srv, nextVH);
+                        preStickViewHolder(c, srv, nextVH, adapter);
                     }
                 }
                 performStickerListener(RecyclerView.NO_POSITION);
@@ -386,9 +387,8 @@ public class StickyRecyclerView extends ExpandableRecyclerView {
         /**
          * 处理Sticky项和和即将Sticky的项
          */
-        void stickViewHolder(Canvas c, StickyRecyclerView srv, GroupInfo groupInfo) {
+        void stickViewHolder(Canvas c, StickyRecyclerView srv, GroupInfo groupInfo, StickyAdapter<?, ?> adapter) {
             if (groupInfo == null) return; //?不会为null
-            StickyAdapter<?, ?> adapter = (StickyAdapter<?, ?>) srv.getExpandableAdapter();
             String stickyItem = adapter.getStickerItem(groupInfo.getIndex());
             if (groupInfo.getIndex() >= adapter.getGroupCount() - 1) { //最后一组
                 drawSticker(c, srv, stickyItem, null);
@@ -412,11 +412,10 @@ public class StickyRecyclerView extends ExpandableRecyclerView {
         /**
          * 处理有Header且Header下是Group时的预处理过度效果
          */
-        void preStickViewHolder(Canvas c, StickyRecyclerView srv, ViewHolder vh) {
+        void preStickViewHolder(Canvas c, StickyRecyclerView srv, ViewHolder vh, StickyAdapter<?, ?> adapter) {
             GroupInfo groupInfo = srv.findGroupInfoByPosition(vh.getAbsoluteAdapterPosition(), mTmpGroupInfo);
             if (groupInfo == null) return;//null ?
             nextRect.set(vh.itemView.getLeft(), vh.itemView.getTop(), vh.itemView.getRight(), vh.itemView.getBottom());
-            StickyAdapter<?, ?> adapter = (StickyAdapter<?, ?>) srv.getExpandableAdapter();
             preDrawSticker(c, srv, adapter.getStickerItem(groupInfo.getIndex()));
         }
 
