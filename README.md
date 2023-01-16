@@ -12,7 +12,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.youxiaochen:sticky-recyclerview:1.0.0'
+    implementation 'com.github.youxiaochen:sticky-recyclerview:1.0.1'
 }
 ```
 
@@ -142,12 +142,6 @@ public static abstract class Adapter<GVH extends GroupViewHolder, CVH extends Ch
 #### 参考图
 ![image](image-and-apk/StickyLayoutView.gif)
 
-#### 博客地址  侍...
-
-
-
-
-
-
+#### 博客地址 https://www.jianshu.com/p/c8aaa4ce421d
 
 ### E-mail-QQ: 86207610@qq.com  W: 86207610   Welcome to star
