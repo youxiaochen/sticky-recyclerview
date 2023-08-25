@@ -87,6 +87,7 @@ public final class CharIndexMediator {
         }
         mLifecycleOwner = lifecycleOwner;
         if (lifecycleOwner != null) {
+            if (lifecycleOwner.getLifecycle().getCurrentState() == Lifecycle.State.DESTROYED) return;
             if (attachObserver == null) {
                 attachObserver = new AttachObserver(this);
             }
